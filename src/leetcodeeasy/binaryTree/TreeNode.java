@@ -1,11 +1,11 @@
 package leetcodeeasy.binaryTree;
 
 public class TreeNode {
-    int val;
-    TreeNode left = null;
-    TreeNode right = null;
+    public int val;
+    public TreeNode left = null;
+    public TreeNode right = null;
 
-    TreeNode(int val) {
+    public TreeNode(int val) {
         this.val = val;
         this.left = null;
         this.right = null;

@@ -27,6 +27,6 @@ public class LongestSubString {
 
 
     public static void main(String[] args) {
-        getLongestSubCount("nndNfdfdf");
+        System.out.println(getLongestSubCount("nndNfdfdf"));
     }
 }

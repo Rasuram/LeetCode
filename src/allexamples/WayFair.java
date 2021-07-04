@@ -17,6 +17,7 @@ max subarray sum
  */
 
 
+import java.util.Arrays;
 import java.util.Set;
 import java.util.Stack;
 import java.util.regex.Matcher;
@@ -203,6 +204,51 @@ public class WayFair {
         return maxm;
     }
 
+
+    static int LongestIncreasingSubsequenceLength(int v[]) {
+        if (v.length == 0) // boundry case
+            return 0;
+
+        int[] tail = new int[v.length];
+        int length = 1; // always points empty slot in tail
+        tail[0] = v[0];
+
+        for (int i = 1; i < v.length; i++) {
+
+            if (v[i] > tail[length - 1]) {
+                // v[i] extends the largest subsequence
+                tail[length++] = v[i];
+            } else {
+                // v[i] will extend a subsequence and
+                // discard older subsequence
+
+                // find the largest value just smaller than
+                // v[i] in tail
+
+                // to find that value do binary search for
+                // the v[i] i                                                        n the range from begin to 0 +
+                // length
+                int idx = Arrays.binarySearch(
+                        tail, 0, length - 1, v[i]);
+
+                // binarySearch in java returns negative
+                // value if searched element is not found in
+                // array
+
+                // this negative value stores the
+                // appropriate place where the element is
+                // supposed to be stored
+                if (idx < 0)
+                    idx = -1 * idx - 1;
+
+                // replacing the existing subsequene with
+                // new end value
+                tail[idx] = v[i];
+            }
+        }
+        return length;
+    }
+
     // -Find longest matching contiguous elements in 2 arrays.
     void longestContiguous() {
         int[] arr1 = {1, 2, 3, 5, 8, 3, 1, 6};
@@ -327,7 +373,7 @@ public class WayFair {
     }
 
     public static void main(String[] args) {
-        WayFair wayFair = new WayFair();
+/*        WayFair wayFair = new WayFair();
         System.out.println(wayFair.generatePalindromeRecursion(121, 0));
         System.out.println(wayFair.generatePalindromeRecursion("1221"));
         //possible pairs
@@ -337,9 +383,19 @@ public class WayFair {
         wayFair.longestContiguous();
         wayFair.matchingBrackets();
         wayFair.findDigitsSumInString();
-        wayFair.findLongestConsecutiveSubsequence();
+        wayFair.findLongestConsecutiveSubsequence
+
+
+
+
+        ();
         wayFair.longestSubSequence();
         //any order
-        wayFair.findMaxLenSubSeq();
+        wayFair.findMaxLenSubSeq();*/
+
+        int v[] = {10,9,2,5,3,5,7,101,103,8,18,20,21} ;
+        System.out.println(
+                "Length of Longest Increasing Subsequence is "
+                        + LongestIncreasingSubsequenceLength(v));
     }
 }

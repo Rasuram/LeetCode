@@ -29,16 +29,29 @@ public class LowestCommonAncestors {
         boolean isLeftFound = findLCA(root.left, p, q);
         boolean isRightFound = findLCA(root.right, p, q);
 
-        if (isLeftFound && isRightFound && lca == null) {
+        if (isLeftFound && isRightFound) {
             lca = root;
         }
-        if ((isRightFound || isLeftFound) && (lca == p || lca == q)) {
-            lca = root;
-        }
-        if (root == p || root == q) {
+        if (root.val == p.val || root.val == q.val) {
             return true;
         }
-        return isLeftFound && isRightFound;
+
+        return isLeftFound || isRightFound;
+
+
+
+        /*if (isLeftFound && isRightFound && lca == null) {
+            lca = root;
+        }
+        if (isLeftFound && isRightFound) {
+            System.out.println("found!");
+        }
+        if ((isRightFound || isLeftFound) && lca != null && (lca.val == p.val || lca.val == q.val)) {
+            lca = root;
+        }
+        if (root.val == p.val || root.val == q.val) {
+            return true;
+        }*/
     }
 
 
@@ -54,8 +67,8 @@ public class LowestCommonAncestors {
         root.right.left = new TreeNode(0);
         root.right.right = new TreeNode(8);
 
-        TreeNode p = new TreeNode(5);
-        TreeNode q = new TreeNode(1);
+        TreeNode p = new TreeNode(6);
+        TreeNode q = new TreeNode(8);
 
         LowestCommonAncestors l = new LowestCommonAncestors();
         TreeNode t = l.lowestCommonAncestor(root, p, q);

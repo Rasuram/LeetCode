@@ -2,56 +2,40 @@ package allexamples;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class LeetCode3 {
 
     public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> answer = new ArrayList<>();
+        // because we will stop searching the next possible combination if target minus the candidate is less than zero
+        // , so we need to sort the candidates to make the order by ascending
+        //   Arrays.sort(candidates);
+        exchange(candidates, 0, target, answer, new LinkedList<>());
 
-        List<List<Integer>> list = new ArrayList<>();
-        for (int value : candidates) {
-            List<Integer> list1 = new ArrayList<>();
-            int counter1=0;
-            while(true){
-                counter1+=value;
-                list1.add(value);
-                if(counter1==target && candidates.length>1){
-                    Collections.sort(list1);
-                    list.add(list1);
-                    break;
-                }
-                if(counter1 > target){
-                    break;
-                }
-            }
-            int counter = value;
-            List<Integer> list2 = new ArrayList<>();
-            for (int i=0;i< candidates.length ; i++) {
-                if (counter == target) {
-                    list2.add(value);
-                    Collections.sort(list2);
-                    list.add(list2);
-                    break;
-                }
-                if(value+candidates[i]==target){
-                    List<Integer> list3 = new ArrayList<>();
-                    list3.add(candidates[i]);
-                    list3.add(value);
-                    Collections.sort(list3);
-                    list.add(list3);
-                    break;
-                }
-                list2.add(candidates[i]);
-                counter += candidates[i];
+        return answer;
+    }
 
-            }
-
+    private static void exchange(int[] candidates, int start, int target, List<List<Integer>> answer, LinkedList<Integer> temp) {
+        if (target == 0) {
+            answer.add(new ArrayList<>(temp));
+            return;
         }
-        return list;
+        if (target < 0) {
+            return;
+        }
+
+        for (int i = start; i < candidates.length; i++) {
+            temp.add(candidates[i]);
+            exchange(candidates, i, target - candidates[i], answer, temp);
+            temp.removeLast();
+        }
     }
 
     public static void main(String[] args) {
-        int combinationSum[] = new int[]{1};
-        combinationSum(combinationSum,2);
+        int combinationSum[] = new int[]{2,3,5};
+        List<List<Integer>> list = combinationSum(combinationSum, 8);
+        System.out.println(list);
     }
 }
