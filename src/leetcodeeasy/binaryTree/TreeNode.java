@@ -11,6 +11,6 @@ public class TreeNode {
         this.right = null;
     }
 
-    TreeNode() {
+    public TreeNode() {
     }
 }

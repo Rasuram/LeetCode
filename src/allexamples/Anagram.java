@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 public class Anagram {
 
+    public boolean isAnagram(String st1, String st2) {
+        return false;
+    }
 
     public static void main(String[] args) {
 

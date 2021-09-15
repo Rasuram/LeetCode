@@ -33,7 +33,7 @@ public class FindAvailableTime {
         int start = -5;
         int end = 27;
         int duration = 2;
-        List<List<Integer>> ans = new ArrayList<>();
+        ArrayList<List<Integer>> ans = new ArrayList<>();
         Arrays.sort(meetingList, Comparator.comparingInt(o -> o[0]));
         for (int[] ints : meetingList) {
             int curEnd = Math.min(ints[0], end);

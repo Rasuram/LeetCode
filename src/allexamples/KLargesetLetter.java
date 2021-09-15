@@ -32,6 +32,7 @@ public class KLargesetLetter {
 
         // Iterate from right side of array
         // to get the largest index character
+        String st = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         for (int i = 25; i >= 0; i--) {
 
             // Check for the character if both its

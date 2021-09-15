@@ -1,6 +1,7 @@
 package adobe;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -8,9 +9,9 @@ public class FirstNonRepeatingElement {
 
 
     public static void findNonRepeatingElement() {
-        int[] arr = {1, 2, 5, 7, 2, 7, 4};
+        int[] arr = {2, 5, 7, 2, 7, 4};
 
-        Map<Integer, Integer> map = new HashMap<>();
+        Map<Integer, Integer> map = new LinkedHashMap<>();
 
         for (int j : arr) {
             if (map.containsKey(j)) {
